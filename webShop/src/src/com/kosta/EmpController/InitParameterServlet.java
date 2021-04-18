@@ -1,0 +1,37 @@
+package com.kosta.EmpController;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class InitParameterServlet
+ */
+@WebServlet(
+		urlPatterns = { 
+				"/InitParameterServlet", 
+				"/param1", 
+				"/param2"
+		}, 
+		initParams = { 
+				@WebInitParam(name = "email", value = "junyjang10@naver.com"), 
+				@WebInitParam(name = "phone", value = "010-1023-1234")
+		}, loadOnStartup = 1)
+public class InitParameterServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public InitParameterServlet(){
+		System.out.println("InitParameterServlet생성자");
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(getInitParameter("email"));
+		System.out.println(getInitParameter("phone"));
+		
+	}
+
+}
